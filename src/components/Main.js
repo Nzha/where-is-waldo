@@ -13,7 +13,7 @@ function Main() {
   };
 
   return (
-    <div className="relative">
+    <div>
       <img
         src="/images/intense-waldo.jpg"
         alt="gameImage"
