@@ -10,7 +10,7 @@ function Main() {
   const handleClick = (e) => {
     e.preventDefault();
 
-    // Calculate constant clicked coords irregardless of the screen size
+    // Calculate clicked coords irregardless of the screen size
     const rect = imageRef.current.getBoundingClientRect();
     const scaleX = imageRef.current.naturalWidth / rect.width;
     const scaleY = imageRef.current.naturalHeight / rect.height;
@@ -20,6 +20,10 @@ function Main() {
 
     setMenuPosition({ x: e.clientX, y: e.clientY });
     setShowMenu(!showMenu);
+
+    if (x > 2130 && x < 2175 && y > 533 && y < 631) {
+      console.log('Waldo Found!');
+    }
   };
 
   useEffect(() => {
