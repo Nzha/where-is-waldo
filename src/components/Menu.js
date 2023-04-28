@@ -1,7 +1,12 @@
-function Menu({ x, y, menuX, menuY }) {
+function Menu({ x, y, menuX, menuY, setShowMenu, setClassName }) {
   const handleClick = () => {
     if (x > 2130 && x < 2175 && y > 533 && y < 631) {
-      console.log('Waldo Found!');
+      console.log('Waldo found!');
+      setClassName('text-black');
+      setShowMenu(false);
+    } else {
+      console.log('Keep looking');
+      setShowMenu(false);
     }
   };
 
