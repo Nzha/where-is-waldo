@@ -20,10 +20,6 @@ function Main() {
 
     setMenuPosition({ x: e.clientX, y: e.clientY });
     setShowMenu(!showMenu);
-
-    if (x > 2130 && x < 2175 && y > 533 && y < 631) {
-      console.log('Waldo Found!');
-    }
   };
 
   useEffect(() => {
@@ -46,7 +42,14 @@ function Main() {
         onClick={handleClick}
         ref={imageRef}
       />
-      {showMenu && <Menu x={menuPosition.x} y={menuPosition.y} />}
+      {showMenu && (
+        <Menu
+          x={clickedLocation.x}
+          y={clickedLocation.y}
+          menuX={menuPosition.x}
+          menuY={menuPosition.y}
+        />
+      )}
     </div>
   );
 }
