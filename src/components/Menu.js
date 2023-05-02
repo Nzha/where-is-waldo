@@ -1,6 +1,28 @@
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, onValue } from 'firebase/database';
+import getFirebaseConfig from '../utilities/firebase-config';
+
+const firebaseAppConfig = getFirebaseConfig();
+const app = initializeApp(firebaseAppConfig);
+const database = getDatabase(app);
+
 function Menu({ x, y, menuX, menuY, setShowMenu, setClassName }) {
   const handleClick = () => {
-    if (x > 2130 && x < 2175 && y > 533 && y < 631) {
+    // Retrieve character location from database and check against clicked coords
+    const characterRef = ref(database, 'characters/waldo/location');
+    onValue(characterRef, (snapshot) => {
+      const data = snapshot.val();
+      checkCoords(data);
+    });
+  };
+
+  const checkCoords = (coords) => {
+    if (
+      x > coords.xMin &&
+      x < coords.xMax &&
+      y > coords.yMin &&
+      y < coords.yMax
+    ) {
       console.log('Waldo found!');
       setClassName('text-black');
       setShowMenu(false);
