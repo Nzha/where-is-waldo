@@ -1,10 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, onValue } from 'firebase/database';
-import getFirebaseConfig from '../utilities/firebase-config';
-
-const firebaseAppConfig = getFirebaseConfig();
-const app = initializeApp(firebaseAppConfig);
-const database = getDatabase(app);
+import { ref, onValue } from 'firebase/database';
+import { database } from '../utilities/firebase';
 
 function Menu({ x, y, menuX, menuY, setShowMenu, setClassName }) {
   const handleClick = () => {
