@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Menu from './Menu';
 
-function Main({ setClassName }) {
+function Main({ setStyle }) {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const [clickedLocation, setClickedLocation] = useState(null);
@@ -49,7 +49,7 @@ function Main({ setClassName }) {
           menuX={menuPosition.x}
           menuY={menuPosition.y}
           setShowMenu={setShowMenu}
-          setClassName={setClassName}
+          setStyle={setStyle}
         />
       )}
     </div>

@@ -3,12 +3,12 @@ import Header from './components/Header';
 import Main from './components/Main';
 
 function App() {
-  const [className, setClassName] = useState(null);
+  const [style, setStyle] = useState(null);
 
   return (
     <div>
-      <Header className={className} />
-      <Main setClassName={setClassName} />
+      <Header style={style} />
+      <Main setStyle={setStyle} />
     </div>
   );
 }
