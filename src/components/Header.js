@@ -16,7 +16,6 @@ function Header({ style }) {
     <header className="sticky top-0 flex justify-around bg-[#5a5a5a] py-2 text-white">
       <div>Logo</div>
       <div className="flex items-center">
-        {/* <div className={className} style={{color: 'red'}}>Waldo</div> */}
         <div className="flex flex-col items-center pr-6" style={style}>
           <img
             className="h-10 w-10 object-contain"
