@@ -1,11 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
+import { ref, getDownloadURL } from 'firebase/storage';
+import { storage } from '../utilities/firebase';
 import Menu from './Menu';
 
 function Main({ setStyle }) {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const [clickedLocation, setClickedLocation] = useState(null);
+  const [bgImageUrl, setBgImageUrl] = useState('');
   const imageRef = useRef(null);
+
+  useEffect(() => {
+    const bgImage = ref(storage, 'IntenseWaldo.jpg');
+    getDownloadURL(bgImage).then((url) => {
+      setBgImageUrl(url);
+    });
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -37,7 +47,7 @@ function Main({ setStyle }) {
   return (
     <div>
       <img
-        src="/images/intense-waldo.jpg"
+        src={bgImageUrl}
         alt="gameImage"
         onClick={handleClick}
         ref={imageRef}
