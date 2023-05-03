@@ -1,7 +1,7 @@
 import { ref, onValue } from 'firebase/database';
 import { database } from '../utilities/firebase';
 
-function Menu({ x, y, menuX, menuY, setShowMenu, setStyle }) {
+function Menu({ x, y, menuX, menuY, setShowMenu, setFoundAvatarStyle }) {
   const handleClick = () => {
     // Retrieve character location from database and check against clicked coords
     const characterRef = ref(database, 'characters/waldo/location');
@@ -19,7 +19,7 @@ function Menu({ x, y, menuX, menuY, setShowMenu, setStyle }) {
       y < coords.yMax
     ) {
       console.log('Waldo found!');
-      setStyle({ opacity: 0.2 });
+      setFoundAvatarStyle({ opacity: 0.4 });
       setShowMenu(false);
     } else {
       console.log('Keep looking');

@@ -3,12 +3,12 @@ import Header from './components/Header';
 import Main from './components/Main';
 
 function App() {
-  const [style, setStyle] = useState(null);
+  const [foundAvatarStyle, setFoundAvatarStyle] = useState(null);
 
   return (
     <div>
-      <Header style={style} />
-      <Main setStyle={setStyle} />
+      <Header foundAvatarStyle={foundAvatarStyle} />
+      <Main setFoundAvatarStyle={setFoundAvatarStyle} />
     </div>
   );
 }
