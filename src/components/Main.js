@@ -30,6 +30,7 @@ function Main({ setFoundAvatarStyle }) {
 
     setMenuPosition({ x: e.clientX, y: e.clientY });
     setShowMenu(!showMenu);
+    // console.log(`x: ${x}, y: ${y}`)
   };
 
   useEffect(() => {
