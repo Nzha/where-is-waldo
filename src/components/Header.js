@@ -10,7 +10,11 @@ function Header({ foundAvatarStyle }) {
     async function fetchData() {
       try {
         const logoRef = ref(storage, 'wheres-waldo-logo.png');
-        const avatarRefs = [ref(storage, 'avatars/waldo.png')];
+        const avatarRefs = [
+          ref(storage, 'avatars/waldo.png'),
+          ref(storage, 'avatars/joker.png'),
+          ref(storage, 'avatars/hawkeye.png'),
+        ];
         const [logoUrl, ...avatarUrls] = await Promise.all([
           getDownloadURL(logoRef),
           ...avatarRefs.map(getDownloadURL),
