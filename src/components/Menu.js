@@ -1,27 +1,15 @@
-import { useState, useEffect } from 'react';
-import { ref, onValue } from 'firebase/database';
-import { database } from '../utilities/firebase';
-
-function Menu({ x, y, menuX, menuY, setShowMenu, setFoundAvatarStyle }) {
-  // Retrieve character data from database
-  const [characters, setCharacters] = useState([]);
-  useEffect(() => {
-    const charactersRef = ref(database, 'characters');
-    onValue(charactersRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        const characterList = Object.entries(data).map(
-          ([name, { location }]) => ({
-            name,
-            location,
-          })
-        );
-        setCharacters(characterList);
-      }
-    });
-  }, []);
-
-  const handleClick = (coords) => {
+function Menu({
+  x,
+  y,
+  menuX,
+  menuY,
+  setShowMenu,
+  setFoundAvatarStyle,
+  characters,
+  setCharacters,
+}) {
+  const handleClick = (name, coords) => {
+    const characterIndex = characters.findIndex((char) => char.name === name);
     if (
       x > coords.xMin &&
       x < coords.xMax &&
@@ -29,9 +17,18 @@ function Menu({ x, y, menuX, menuY, setShowMenu, setFoundAvatarStyle }) {
       y < coords.yMax
     ) {
       console.log('Character found!');
+      const newCharacters = [...characters];
+      newCharacters[characterIndex] = {
+        ...newCharacters[characterIndex],
+        found: true,
+      };
+      console.table(newCharacters);
+      setCharacters(newCharacters);
+      console.table(characters);
       setFoundAvatarStyle({ opacity: 0.4 });
     } else {
       console.log('Keep looking');
+      console.table(characters);
     }
     setShowMenu(false);
   };
@@ -45,7 +42,7 @@ function Menu({ x, y, menuX, menuY, setShowMenu, setFoundAvatarStyle }) {
         <li
           key={name}
           className="rounded border-2 border-black bg-white bg-opacity-80 px-4 py-1 hover:scale-105 hover:bg-opacity-100"
-          onClick={() => handleClick(location)}
+          onClick={() => handleClick(name, location)}
         >
           {name.charAt(0).toUpperCase() + name.slice(1)}
         </li>

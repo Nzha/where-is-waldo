@@ -3,7 +3,7 @@ import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../utilities/firebase';
 import Menu from './Menu';
 
-function Main({ setFoundAvatarStyle }) {
+function Main({ setFoundAvatarStyle, characters, setCharacters }) {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const [clickedLocation, setClickedLocation] = useState(null);
@@ -30,7 +30,7 @@ function Main({ setFoundAvatarStyle }) {
 
     setMenuPosition({ x: e.clientX, y: e.clientY });
     setShowMenu(!showMenu);
-    // console.log(`x: ${x}, y: ${y}`)
+    // console.log(`x: ${x}, y: ${y}`);
   };
 
   useEffect(() => {
@@ -61,6 +61,8 @@ function Main({ setFoundAvatarStyle }) {
           menuY={menuPosition.y}
           setShowMenu={setShowMenu}
           setFoundAvatarStyle={setFoundAvatarStyle}
+          characters={characters}
+          setCharacters={setCharacters}
         />
       )}
     </div>
