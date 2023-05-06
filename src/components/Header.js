@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../utilities/firebase';
+import extractNameFromUrl from '../utilities/extractNameFormUrl';
 
-function Header({ foundAvatarStyle }) {
+function Header({ characters }) {
   const [logoUrl, setLogoUrl] = useState('');
   const [avatarUrls, setAvatarUrls] = useState([]);
 
@@ -28,14 +29,6 @@ function Header({ foundAvatarStyle }) {
     fetchData();
   }, []);
 
-  const extractNameFromUrl = (url) => {
-    const startIndex = url.indexOf('%2F') + 3;
-    const endIndex = url.indexOf('.png');
-    const name = url.substring(startIndex, endIndex);
-    const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1);
-    return nameCapitalized;
-  };
-
   return (
     <header className="sticky top-0 flex justify-around bg-gray-700 py-2 text-white">
       {logoUrl && (
@@ -48,7 +41,12 @@ function Header({ foundAvatarStyle }) {
           <div
             key={index}
             className="flex flex-col items-center pr-6"
-            style={foundAvatarStyle}
+            style={
+              characters.find((char) => char.name === extractNameFromUrl(url))
+                ?.found
+                ? { opacity: 0.4 }
+                : {}
+            }
           >
             {url && (
               <img
@@ -57,7 +55,7 @@ function Header({ foundAvatarStyle }) {
                 alt={`Avatar ${index}`}
               />
             )}
-            <p className="text-sm font-bold">{extractNameFromUrl(url)}</p>
+            <p className="text-sm font-bold">{extractNameFromUrl(url, true)}</p>
           </div>
         ))}
       </div>

@@ -1,13 +1,4 @@
-function Menu({
-  x,
-  y,
-  menuX,
-  menuY,
-  setShowMenu,
-  setFoundAvatarStyle,
-  characters,
-  setCharacters,
-}) {
+function Menu({ x, y, menuX, menuY, setShowMenu, characters, setCharacters }) {
   const handleClick = (name, coords) => {
     const characterIndex = characters.findIndex((char) => char.name === name);
     if (
@@ -22,10 +13,8 @@ function Menu({
         ...newCharacters[characterIndex],
         found: true,
       };
-      console.table(newCharacters);
       setCharacters(newCharacters);
       console.table(characters);
-      setFoundAvatarStyle({ opacity: 0.4 });
     } else {
       console.log('Keep looking');
       console.table(characters);

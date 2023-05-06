@@ -3,7 +3,7 @@ import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../utilities/firebase';
 import Menu from './Menu';
 
-function Main({ setFoundAvatarStyle, characters, setCharacters }) {
+function Main({ characters, setCharacters }) {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const [clickedLocation, setClickedLocation] = useState(null);
@@ -60,7 +60,6 @@ function Main({ setFoundAvatarStyle, characters, setCharacters }) {
           menuX={menuPosition.x}
           menuY={menuPosition.y}
           setShowMenu={setShowMenu}
-          setFoundAvatarStyle={setFoundAvatarStyle}
           characters={characters}
           setCharacters={setCharacters}
         />

@@ -6,7 +6,6 @@ import Main from './components/Main';
 
 function App() {
   const [characters, setCharacters] = useState([]);
-  const [foundAvatarStyle, setFoundAvatarStyle] = useState(null);
 
   // Retrieve character data from database
   useEffect(() => {
@@ -28,12 +27,8 @@ function App() {
 
   return (
     <div>
-      <Header foundAvatarStyle={foundAvatarStyle} />
-      <Main
-        setFoundAvatarStyle={setFoundAvatarStyle}
-        characters={characters}
-        setCharacters={setCharacters}
-      />
+      <Header characters={characters} />
+      <Main characters={characters} setCharacters={setCharacters} />
     </div>
   );
 }
