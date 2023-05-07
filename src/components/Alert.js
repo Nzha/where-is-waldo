@@ -6,7 +6,7 @@ function Alert({ message, type }) {
 
   return (
     <div
-      className={`absolute left-1/2 top-6 -translate-x-1/2 transform rounded-lg px-10 py-2 ${tailwindClasses[type]} `}
+      className={`fixed left-1/2 top-24 -translate-x-1/2 transform rounded-lg px-10 py-2 ${tailwindClasses[type]} `}
     >
       <p>{message}</p>
     </div>

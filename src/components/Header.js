@@ -30,7 +30,7 @@ function Header({ characters }) {
   }, []);
 
   return (
-    <header className="sticky top-0 flex justify-around bg-gray-700 py-2 text-white">
+    <header className="sticky top-0 z-30 flex justify-around bg-gray-700 py-2 text-white">
       {logoUrl && (
         <div>
           <img className="h-14" src={logoUrl} alt="Logo" />

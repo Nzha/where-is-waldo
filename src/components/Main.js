@@ -66,7 +66,7 @@ function Main({ characters, setCharacters }) {
   }, [showAlert]);
 
   return (
-    <div className="relative">
+    <div>
       <img
         src={bgImageUrl}
         alt="gameImage"
