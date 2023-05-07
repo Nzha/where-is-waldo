@@ -25,8 +25,10 @@ function Menu({
         ...newCharacters[characterIndex],
         found: true,
       };
+      const allFound = newCharacters.every((character) => character.found);
       setCharacters(newCharacters);
       displayAlert(`${capitalize(name)} found!`, 'success');
+      if (allFound) console.log('All found!');
     } else {
       displayAlert('Keep looking', 'error');
     }
