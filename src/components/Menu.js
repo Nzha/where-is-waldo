@@ -11,6 +11,7 @@ function Menu({
   setCharacters,
   displayAlert,
   avatarUrls,
+  setStopwatchRunning,
 }) {
   const handleClick = (name, coords) => {
     const characterIndex = characters.findIndex((char) => char.name === name);
@@ -28,7 +29,10 @@ function Menu({
       const allFound = newCharacters.every((character) => character.found);
       setCharacters(newCharacters);
       displayAlert(`${capitalize(name)} found!`, 'success');
-      if (allFound) console.log('All found!');
+      if (allFound) {
+        console.log('All found!');
+        setStopwatchRunning(false);
+      }
     } else {
       displayAlert('Keep looking', 'error');
     }

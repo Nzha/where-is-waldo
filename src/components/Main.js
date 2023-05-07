@@ -4,7 +4,7 @@ import { storage } from '../utilities/firebase';
 import Menu from './Menu';
 import Alert from './Alert';
 
-function Main({ characters, setCharacters, avatarUrls }) {
+function Main({ characters, setCharacters, avatarUrls, setStopwatchRunning }) {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const [clickedLocation, setClickedLocation] = useState(null);
@@ -85,6 +85,7 @@ function Main({ characters, setCharacters, avatarUrls }) {
           setCharacters={setCharacters}
           displayAlert={displayAlert}
           avatarUrls={avatarUrls}
+          setStopwatchRunning={setStopwatchRunning}
         />
       )}
     </div>

@@ -1,13 +1,15 @@
 import extractNameFromUrl from '../utilities/extractNameFormUrl';
+import Stopwatch from './Stopwatch';
 
-function Header({ characters, logoUrl, avatarUrls }) {
+function Header({ characters, logoUrl, avatarUrls, stopwatchRunning }) {
   return (
-    <header className="sticky top-0 z-30 flex justify-around bg-gray-700 py-2 text-white">
+    <header className="sticky top-0 z-30 flex items-center justify-around bg-gray-700 py-2 text-white">
       {logoUrl && (
         <div>
           <img className="h-14" src={logoUrl} alt="Logo" />
         </div>
       )}
+      <Stopwatch stopwatchRunning={stopwatchRunning} />
       <div className="flex items-center">
         {avatarUrls.map((url, index) => (
           <div
