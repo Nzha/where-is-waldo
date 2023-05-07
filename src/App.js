@@ -7,10 +7,10 @@ import Main from './components/Main';
 
 function App() {
   const [characters, setCharacters] = useState([]);
-  const [logoUrl, setLogoUrl] = useState('');
   const [avatarUrls, setAvatarUrls] = useState([]);
+  const [logoUrl, setLogoUrl] = useState('');
 
-  // Retrieve character data from database
+  // Retrieve characters' data from database
   useEffect(() => {
     const charactersRef = ref(database, 'characters');
     onValue(charactersRef, (snapshot) => {
@@ -58,7 +58,11 @@ function App() {
         logoUrl={logoUrl}
         avatarUrls={avatarUrls}
       />
-      <Main characters={characters} setCharacters={setCharacters} />
+      <Main
+        characters={characters}
+        setCharacters={setCharacters}
+        avatarUrls={avatarUrls}
+      />
     </div>
   );
 }
