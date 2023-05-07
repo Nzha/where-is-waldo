@@ -37,15 +37,17 @@ function Menu({
       className="fixed z-50 cursor-pointer shadow-lg"
       style={{ top: menuY + 10, left: menuX + 5 }}
     >
-      {characters.map(({ name, location }) => (
-        <li
-          key={name}
-          className="rounded border-2 border-black bg-white bg-opacity-80 px-4 py-1 hover:scale-105 hover:bg-opacity-100"
-          onClick={() => handleClick(name, location)}
-        >
-          {name.charAt(0).toUpperCase() + name.slice(1)}
-        </li>
-      ))}
+      {characters
+        .filter(({ found }) => !found)
+        .map(({ name, location }) => (
+          <li
+            key={name}
+            className="rounded border-2 border-black bg-white bg-opacity-80 px-4 py-1 hover:scale-105 hover:bg-opacity-100"
+            onClick={() => handleClick(name, location)}
+          >
+            {name.charAt(0).toUpperCase() + name.slice(1)}
+          </li>
+        ))}
     </ul>
   );
 }
