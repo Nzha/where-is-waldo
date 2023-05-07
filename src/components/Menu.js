@@ -1,4 +1,4 @@
-function Menu({ x, y, menuX, menuY, setShowMenu, characters, setCharacters }) {
+function Menu({ x, y, menuX, menuY, setShowMenu, characters, setCharacters, displayAlert }) {
   const handleClick = (name, coords) => {
     const characterIndex = characters.findIndex((char) => char.name === name);
     if (
@@ -16,6 +16,7 @@ function Menu({ x, y, menuX, menuY, setShowMenu, characters, setCharacters }) {
       setCharacters(newCharacters);
       console.table(characters);
     } else {
+      displayAlert('Keep looking', 'error')
       console.log('Keep looking');
       console.table(characters);
     }

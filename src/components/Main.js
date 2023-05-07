@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../utilities/firebase';
 import Menu from './Menu';
+import Alert from './Alert';
 
 function Main({ characters, setCharacters }) {
   const [showMenu, setShowMenu] = useState(false);
@@ -45,14 +46,34 @@ function Main({ characters, setCharacters }) {
     };
   }, [clickedLocation]);
 
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertType, setAlertType] = useState('');
+
+  const displayAlert = (message, type) => {
+    setAlertMessage(message);
+    setAlertType(type);
+    setShowAlert(true);
+  };
+
+  useEffect(() => {
+    if (showAlert) {
+      const timeout = setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
+      return () => clearTimeout(timeout);
+    }
+  }, [showAlert]);
+
   return (
-    <div>
+    <div className="relative">
       <img
         src={bgImageUrl}
         alt="gameImage"
         onClick={handleClick}
         ref={imageRef}
       />
+      {showAlert && <Alert message={alertMessage} type={alertType} />}
       {showMenu && (
         <Menu
           x={clickedLocation.x}
@@ -62,6 +83,7 @@ function Main({ characters, setCharacters }) {
           setShowMenu={setShowMenu}
           characters={characters}
           setCharacters={setCharacters}
+          displayAlert={displayAlert}
         />
       )}
     </div>
