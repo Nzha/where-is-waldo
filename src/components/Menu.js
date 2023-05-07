@@ -41,10 +41,12 @@ function Menu({
         .map(({ name, location }) => (
           <li
             key={name}
-            className="rounded border-2 border-black bg-white bg-opacity-80 px-4 py-1 hover:scale-105 hover:bg-opacity-100"
+            // className="rounded border-2 border-black bg-white bg-opacity-80 px-4 py-1 hover:scale-105 hover:bg-opacity-100"
+            className="rounded border-2 border-black bg-gray-700 bg-opacity-80 px-4 py-1 hover:scale-105 hover:bg-opacity-100 text-[#FCE44D] font-semibold"
             onClick={() => handleClick(name, location)}
           >
-            {capitalize(name)}
+            <div></div>
+            <div>{capitalize(name)}</div>
           </li>
         ))}
     </ul>

@@ -1,34 +1,6 @@
-import { useState, useEffect } from 'react';
-import { ref, getDownloadURL } from 'firebase/storage';
-import { storage } from '../utilities/firebase';
 import extractNameFromUrl from '../utilities/extractNameFormUrl';
 
-function Header({ characters }) {
-  const [logoUrl, setLogoUrl] = useState('');
-  const [avatarUrls, setAvatarUrls] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const logoRef = ref(storage, 'wheres-waldo-logo.png');
-        const avatarRefs = [
-          ref(storage, 'avatars/waldo.png'),
-          ref(storage, 'avatars/joker.png'),
-          ref(storage, 'avatars/hawkeye.png'),
-        ];
-        const [logoUrl, ...avatarUrls] = await Promise.all([
-          getDownloadURL(logoRef),
-          ...avatarRefs.map(getDownloadURL),
-        ]);
-        setLogoUrl(logoUrl);
-        setAvatarUrls(avatarUrls);
-      } catch (error) {
-        console.log('Error fetching images:', error);
-      }
-    }
-    fetchData();
-  }, []);
-
+function Header({ characters, logoUrl, avatarUrls }) {
   return (
     <header className="sticky top-0 z-30 flex justify-around bg-gray-700 py-2 text-white">
       {logoUrl && (
