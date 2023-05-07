@@ -1,3 +1,5 @@
+import capitalize from '../utilities/capitalizeString';
+
 function Menu({
   x,
   y,
@@ -22,10 +24,7 @@ function Menu({
         found: true,
       };
       setCharacters(newCharacters);
-      displayAlert(
-        `${name.charAt(0).toUpperCase() + name.slice(1)} found!`,
-        'success'
-      );
+      displayAlert(`${capitalize(name)} found!`, 'success');
     } else {
       displayAlert('Keep looking', 'error');
     }
@@ -45,7 +44,7 @@ function Menu({
             className="rounded border-2 border-black bg-white bg-opacity-80 px-4 py-1 hover:scale-105 hover:bg-opacity-100"
             onClick={() => handleClick(name, location)}
           >
-            {name.charAt(0).toUpperCase() + name.slice(1)}
+            {capitalize(name)}
           </li>
         ))}
     </ul>
