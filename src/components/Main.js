@@ -11,6 +11,11 @@ function Main({ characters, setCharacters }) {
   const [bgImageUrl, setBgImageUrl] = useState('');
   const imageRef = useRef(null);
 
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertType, setAlertType] = useState('');
+
+  // Get background image from database
   useEffect(() => {
     const bgImage = ref(storage, 'IntenseWaldo.jpg');
     getDownloadURL(bgImage).then((url) => {
@@ -20,15 +25,13 @@ function Main({ characters, setCharacters }) {
 
   const handleClick = (e) => {
     e.preventDefault();
-
     // Calculate clicked coords irregardless of the screen size
     const rect = imageRef.current.getBoundingClientRect();
-    const scaleX = imageRef.current.naturalWidth / rect.width;
-    const scaleY = imageRef.current.naturalHeight / rect.height;
+    const scaleX = imageRef?.current?.naturalWidth / rect?.width;
+    const scaleY = imageRef?.current?.naturalHeight / rect?.height;
     const x = (e.clientX - rect.left) * scaleX;
     const y = (e.clientY - rect.top) * scaleY;
     setClickedLocation({ x, y });
-
     setMenuPosition({ x: e.clientX, y: e.clientY });
     setShowMenu(!showMenu);
     // console.log(`x: ${x}, y: ${y}`);
@@ -46,16 +49,13 @@ function Main({ characters, setCharacters }) {
     };
   }, [clickedLocation]);
 
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const [alertType, setAlertType] = useState('');
-
   const displayAlert = (message, type) => {
     setAlertMessage(message);
     setAlertType(type);
     setShowAlert(true);
   };
 
+  // Remove alert message after 3 seconds
   useEffect(() => {
     if (showAlert) {
       const timeout = setTimeout(() => {

@@ -1,4 +1,13 @@
-function Menu({ x, y, menuX, menuY, setShowMenu, characters, setCharacters, displayAlert }) {
+function Menu({
+  x,
+  y,
+  menuX,
+  menuY,
+  setShowMenu,
+  characters,
+  setCharacters,
+  displayAlert,
+}) {
   const handleClick = (name, coords) => {
     const characterIndex = characters.findIndex((char) => char.name === name);
     if (
@@ -7,18 +16,18 @@ function Menu({ x, y, menuX, menuY, setShowMenu, characters, setCharacters, disp
       y > coords.yMin &&
       y < coords.yMax
     ) {
-      console.log('Character found!');
       const newCharacters = [...characters];
       newCharacters[characterIndex] = {
         ...newCharacters[characterIndex],
         found: true,
       };
       setCharacters(newCharacters);
-      console.table(characters);
+      displayAlert(
+        `${name.charAt(0).toUpperCase() + name.slice(1)} found!`,
+        'success'
+      );
     } else {
-      displayAlert('Keep looking', 'error')
-      console.log('Keep looking');
-      console.table(characters);
+      displayAlert('Keep looking', 'error');
     }
     setShowMenu(false);
   };
