@@ -3,12 +3,20 @@ import Stopwatch from './Stopwatch';
 
 function Header({ characters, logoUrl, avatarUrls, stopwatchRunning }) {
   return (
-    <header className="sticky top-0 z-30 flex items-center justify-around bg-gray-700 py-2 text-white">
-      {logoUrl && (
+    <header className="sticky top-0 z-30 flex items-center justify-around bg-gray-700 py-3 text-white">
+      {/* {logoUrl && (
         <div>
-          <img className="h-14" src={logoUrl} alt="Logo" />
+          <img className="h-7" src={logoUrl} alt="Logo" />
         </div>
-      )}
+      )} */}
+      <div className="text-2xl font-bold leading-tight">
+        <div className="text-orange-500">
+          WHERE'S <span className="text-yellow-300">WALDO</span>
+        </div>
+        <div className="text-orange-500">
+          & <span className="text-yellow-300">CIE</span>
+        </div>
+      </div>
       <Stopwatch stopwatchRunning={stopwatchRunning} />
       <div className="flex items-center">
         {avatarUrls.map((url, index) => (

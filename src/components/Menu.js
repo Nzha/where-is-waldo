@@ -49,7 +49,7 @@ function Menu({
         .map(({ name, location }) => (
           <li
             key={name}
-            className="flex items-center gap-3 rounded border-2 border-black bg-gray-700 bg-opacity-90 px-4 py-1 font-semibold text-[#FCE44D] hover:scale-105 hover:bg-opacity-100"
+            className="flex items-center gap-3 rounded border-2 border-black bg-gray-700 bg-opacity-90 px-4 py-1 font-semibold text-yellow-300 hover:scale-105 hover:bg-opacity-100"
             onClick={() => handleClick(name, location)}
           >
             <img
