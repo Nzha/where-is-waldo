@@ -3,8 +3,15 @@ import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../utilities/firebase';
 import Menu from './Menu';
 import Alert from './Alert';
+import ModalGameOver from './ModalGameOver';
 
-function Main({ characters, setCharacters, avatarUrls, setStopwatchRunning }) {
+function Main({
+  characters,
+  setCharacters,
+  avatarUrls,
+  setStopwatchRunning,
+  time,
+}) {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const [clickedLocation, setClickedLocation] = useState(null);
@@ -14,6 +21,11 @@ function Main({ characters, setCharacters, avatarUrls, setStopwatchRunning }) {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('');
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const closeModal = () => setIsModalOpen(false);
+  const openModal = () => setIsModalOpen(true);
 
   // Get background image from database
   useEffect(() => {
@@ -86,8 +98,15 @@ function Main({ characters, setCharacters, avatarUrls, setStopwatchRunning }) {
           displayAlert={displayAlert}
           avatarUrls={avatarUrls}
           setStopwatchRunning={setStopwatchRunning}
+          openModal={openModal}
         />
       )}
+      <ModalGameOver
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        openModal={openModal}
+        time={time}
+      />
     </div>
   );
 }

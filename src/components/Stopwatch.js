@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
-function Stopwatch({ stopwatchRunning }) {
-  const [time, setTime] = useState(0);
-
+function Stopwatch({ stopwatchRunning, time, setTime }) {
   useEffect(() => {
     let intervalId;
     if (stopwatchRunning) {

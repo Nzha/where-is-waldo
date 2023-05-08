@@ -12,6 +12,7 @@ function Menu({
   displayAlert,
   avatarUrls,
   setStopwatchRunning,
+  openModal,
 }) {
   const handleClick = (name, coords) => {
     const characterIndex = characters.findIndex((char) => char.name === name);
@@ -28,10 +29,10 @@ function Menu({
       };
       const allFound = newCharacters.every((character) => character.found);
       setCharacters(newCharacters);
-      displayAlert(`${capitalize(name)} found!`, 'success');
+      displayAlert(`You found ${capitalize(name)}!`, 'success');
       if (allFound) {
-        console.log('All found!');
         setStopwatchRunning(false);
+        openModal();
       }
     } else {
       displayAlert('Keep looking', 'error');

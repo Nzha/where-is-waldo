@@ -8,11 +8,11 @@ import Main from './components/Main';
 function App() {
   const [characters, setCharacters] = useState([]);
   const [avatarUrls, setAvatarUrls] = useState([]);
-  const [logoUrl, setLogoUrl] = useState('');
   const [stopwatchRunning, setStopwatchRunning] = useState(true);
+  const [time, setTime] = useState(0);
 
-  // Retrieve characters' data from database
   useEffect(() => {
+    // Retrieve characters' data from database
     const charactersRef = ref(database, 'characters');
     onValue(charactersRef, (snapshot) => {
       const data = snapshot.val();
@@ -25,7 +25,7 @@ function App() {
           })
         );
 
-        // Select two random characters from the characterList array
+        // Select 3 random characters from the characterList array
         const randomIndices = [];
         while (randomIndices.length < 3) {
           const randomIndex = Math.floor(Math.random() * characterList.length);
@@ -44,17 +44,15 @@ function App() {
   }, []);
 
   useEffect(() => {
+    // Retrieve characters' avatar from storage
     async function fetchData() {
       try {
-        const logoRef = storageRef(storage, 'wheres-waldo-logo.png');
         const avatarRefs = characters.map((character) =>
           storageRef(storage, `avatars/${character.name}.png`)
         );
-        const [logoUrl, ...avatarUrls] = await Promise.all([
-          getDownloadURL(logoRef),
-          ...avatarRefs.map(getDownloadURL),
-        ]);
-        setLogoUrl(logoUrl);
+        const avatarUrls = await Promise.all(
+          avatarRefs.map((ref) => getDownloadURL(ref))
+        );
         setAvatarUrls(avatarUrls);
       } catch (error) {
         console.log('Error fetching images:', error);
@@ -67,15 +65,17 @@ function App() {
     <div>
       <Header
         characters={characters}
-        logoUrl={logoUrl}
         avatarUrls={avatarUrls}
         stopwatchRunning={stopwatchRunning}
+        time={time}
+        setTime={setTime}
       />
       <Main
         characters={characters}
         setCharacters={setCharacters}
         avatarUrls={avatarUrls}
         setStopwatchRunning={setStopwatchRunning}
+        time={time}
       />
     </div>
   );

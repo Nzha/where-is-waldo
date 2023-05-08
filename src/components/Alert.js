@@ -1,7 +1,7 @@
 function Alert({ message, type }) {
   const tailwindClasses = {
-    success: 'bg-green-500 text-white',
-    error: 'bg-red-500 text-white',
+    success: 'bg-green-600 text-white',
+    error: 'bg-red-600 text-white',
   };
 
   return (
