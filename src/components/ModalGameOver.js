@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
+import { formatTimeMin } from '../utilities/formatTime';
 
 function ModalGameOver({ isModalOpen, closeModal, openModal, time }) {
   return (
@@ -48,7 +49,7 @@ function ModalGameOver({ isModalOpen, closeModal, openModal, time }) {
                     as="h3"
                     className="mt-2 text-lg font-medium leading-6 text-yellow-300"
                   >
-                    You found all the characters in {time}!
+                    You found all the characters in {formatTimeMin(time)}!
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-white">

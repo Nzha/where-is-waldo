@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import formatTime from '../utilities/formatTime';
 
 function Stopwatch({ stopwatchRunning, time, setTime }) {
   useEffect(() => {
@@ -10,17 +11,6 @@ function Stopwatch({ stopwatchRunning, time, setTime }) {
     }
     return () => clearInterval(intervalId);
   }, [stopwatchRunning]);
-
-  const formatTime = (time) => {
-    const hours = Math.floor(time / 3600)
-      .toString()
-      .padStart(2, '0');
-    const minutes = Math.floor((time % 3600) / 60)
-      .toString()
-      .padStart(2, '0');
-    const seconds = (time % 60).toString().padStart(2, '0');
-    return `${hours}:${minutes}:${seconds}`;
-  };
 
   return (
     <div className="text-4xl">
