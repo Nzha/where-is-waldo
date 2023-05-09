@@ -1,6 +1,6 @@
 import { onValue, ref } from 'firebase/database';
 import { getDownloadURL, ref as storageRef } from 'firebase/storage';
-import { database, storage } from './firebase';
+import { database, storage } from './utilities/firebase';
 
 const fetchCharData = (setCharacters) => {
   // Fetch characters' data from database
