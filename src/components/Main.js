@@ -11,6 +11,7 @@ function Main({
   avatarUrls,
   setStopwatchRunning,
   time,
+  restart
 }) {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
@@ -106,6 +107,7 @@ function Main({
         closeModal={closeModal}
         openModal={openModal}
         time={time}
+        restart={restart}
       />
     </div>
   );

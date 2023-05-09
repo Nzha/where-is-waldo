@@ -2,9 +2,10 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { formatTimeMin } from '../utilities/formatTime';
 
-function ModalGameOver({ isModalOpen, closeModal, openModal, time }) {
+function ModalGameOver({ isModalOpen, closeModal, openModal, time, restart }) {
   function handleRestart() {
-    window.location.reload();
+    // window.location.reload();
+    restart();
   }
 
   return (
