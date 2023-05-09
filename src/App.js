@@ -14,33 +14,27 @@ function App() {
   useEffect(() => {
     // Retrieve characters' data from database
     const charactersRef = ref(database, 'characters');
-    onValue(charactersRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        const characterList = Object.entries(data).map(
-          ([name, { location }]) => ({
-            name,
-            location,
-            found: false,
-          })
-        );
-
-        // Select 3 random characters from the characterList array
-        const randomIndices = [];
-        while (randomIndices.length < 3) {
-          const randomIndex = Math.floor(Math.random() * characterList.length);
-          if (!randomIndices.includes(randomIndex)) {
-            randomIndices.push(randomIndex);
-          }
+    onValue(
+      charactersRef,
+      (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const characterList = Object.entries(data).map(
+            ([name, { location }]) => ({ name, location, found: false })
+          );
+          // Select 3 random characters from the characterList array
+          const [a, b, c] = characterList
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 3);
+          setCharacters([a, b, c]);
+        } else {
+          console.log('No data available');
         }
-        const randomChars = [
-          characterList[randomIndices[0]],
-          characterList[randomIndices[1]],
-          characterList[randomIndices[2]],
-        ];
-        setCharacters(randomChars);
+      },
+      (error) => {
+        console.log('Error fetching data:', error);
       }
-    });
+    );
   }, []);
 
   useEffect(() => {
@@ -50,9 +44,11 @@ function App() {
         const avatarRefs = characters.map((character) =>
           storageRef(storage, `avatars/${character.name}.png`)
         );
-        const avatarUrls = await Promise.all(
-          avatarRefs.map((ref) => getDownloadURL(ref))
-        );
+        const avatarUrls = [];
+        for (const avatarRef of avatarRefs) {
+          const url = await getDownloadURL(avatarRef);
+          avatarUrls.push(url);
+        }
         setAvatarUrls(avatarUrls);
       } catch (error) {
         console.log('Error fetching images:', error);

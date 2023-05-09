@@ -3,6 +3,10 @@ import { Fragment } from 'react';
 import { formatTimeMin } from '../utilities/formatTime';
 
 function ModalGameOver({ isModalOpen, closeModal, openModal, time }) {
+  function handleRestart() {
+    window.location.reload();
+  }
+
   return (
     <>
       <Transition appear show={isModalOpen} as={Fragment}>
@@ -56,14 +60,20 @@ function ModalGameOver({ isModalOpen, closeModal, openModal, time }) {
                       Enter your name to save your score on the leaderboard
                     </p>
                   </div>
-
                   <div className="mt-4">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-orange-700 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="mr-4 inline-flex justify-center rounded-md border border-transparent border-white px-4 py-2 text-sm font-medium text-white"
+                      onClick={handleRestart}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-orange-700 px-4 py-2 text-sm font-medium text-white hover:bg-red-600"
                       onClick={closeModal}
                     >
-                      Got it, thanks!
+                      Submit score
                     </button>
                   </div>
                 </Dialog.Panel>

@@ -10,7 +10,7 @@ function Stopwatch({ stopwatchRunning, time, setTime }) {
       }, 1000);
     }
     return () => clearInterval(intervalId);
-  }, [stopwatchRunning]);
+  }, [setTime, stopwatchRunning]);
 
   return (
     <div className="text-4xl">
