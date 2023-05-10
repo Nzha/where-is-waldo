@@ -1,12 +1,28 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { formatTimeMin } from '../utilities/formatTime';
+import writeScore from '../utilities/writeScore';
 
-function ModalGameOver({ isModalOpen, closeModal, openModal, time, restart }) {
-  function handleRestart() {
-    // window.location.reload();
+function ModalGameOver({
+  isModalOpen,
+  closeModal,
+  openModal,
+  time,
+  restart,
+  setShowLeaderboard,
+}) {
+  const [username, setUsername] = useState('');
+
+  const handleRestart = () => {
     restart();
-  }
+    closeModal();
+  };
+
+  const handleSubmit = async () => {
+    closeModal();
+    await writeScore(username, time);
+    setShowLeaderboard(true);
+  };
 
   return (
     <>
@@ -62,6 +78,17 @@ function ModalGameOver({ isModalOpen, closeModal, openModal, time, restart }) {
                     </p>
                   </div>
                   <div className="mt-4">
+                    <input
+                      type="text"
+                      id="name"
+                      className="w-full rounded-lg border-2 border-black bg-gray-50 p-2.5 text-sm text-gray-900"
+                      placeholder="Username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="mt-5">
                     <button
                       type="button"
                       className="mr-4 inline-flex justify-center rounded-md border border-transparent border-white px-4 py-2 text-sm font-medium text-white"
@@ -72,7 +99,7 @@ function ModalGameOver({ isModalOpen, closeModal, openModal, time, restart }) {
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-orange-700 px-4 py-2 text-sm font-medium text-white hover:bg-red-600"
-                      onClick={closeModal}
+                      onClick={handleSubmit}
                     >
                       Submit score
                     </button>

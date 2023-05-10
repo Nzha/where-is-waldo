@@ -11,7 +11,8 @@ function Main({
   avatarUrls,
   setStopwatchRunning,
   time,
-  restart
+  restart,
+  setShowLeaderboard
 }) {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
@@ -108,6 +109,7 @@ function Main({
         openModal={openModal}
         time={time}
         restart={restart}
+        setShowLeaderboard={setShowLeaderboard}
       />
     </div>
   );

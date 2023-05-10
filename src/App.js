@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
-import fetchCharData, { fetchCharAvatars } from './utilities/fetchData';
+import fetchCharData, { fetchCharAvatars } from './utilities/fetchCharactersData';
 import Header from './components/Header';
 import Main from './components/Main';
+import Leaderboard from './components/Leaderboard';
 
 function App() {
   const [characters, setCharacters] = useState([]);
   const [avatarUrls, setAvatarUrls] = useState([]);
   const [stopwatchRunning, setStopwatchRunning] = useState(true);
   const [time, setTime] = useState(0);
+  const [showLeaderBoard, setShowLeaderboard] = useState(false);
 
   useEffect(() => {
     fetchCharData(setCharacters);
@@ -34,14 +36,19 @@ function App() {
         time={time}
         setTime={setTime}
       />
-      <Main
-        characters={characters}
-        setCharacters={setCharacters}
-        avatarUrls={avatarUrls}
-        setStopwatchRunning={setStopwatchRunning}
-        time={time}
-        restart={restart}
-      />
+      {!showLeaderBoard ? (
+        <Main
+          characters={characters}
+          setCharacters={setCharacters}
+          avatarUrls={avatarUrls}
+          setStopwatchRunning={setStopwatchRunning}
+          time={time}
+          restart={restart}
+          setShowLeaderboard={setShowLeaderboard}
+        />
+      ) : (
+        <Leaderboard />
+      )}
     </div>
   );
 }
