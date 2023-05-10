@@ -42,4 +42,27 @@ const fetchCharAvatars = async (characters, setAvatarUrls) => {
   }
 };
 
-export { fetchCharData as default, fetchCharAvatars };
+const fetchScores = (setScores) => {
+  // Fetch characters' data from database
+  const scoresRef = ref(database, 'scores');
+  onValue(
+    scoresRef,
+    (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const scoreList = Object.entries(data).map(([key, value]) => ({
+          name: value.name,
+          score: value.score,
+        }));
+        setScores(scoreList);
+      } else {
+        console.log('No data available');
+      }
+    },
+    (error) => {
+      console.log('Error fetching data:', error);
+    }
+  );
+};
+
+export { fetchCharData as default, fetchCharAvatars, fetchScores };

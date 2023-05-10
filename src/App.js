@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import fetchCharData, { fetchCharAvatars } from './utilities/fetchCharactersData';
+import fetchCharData, { fetchCharAvatars } from './utilities/fetchData';
 import Header from './components/Header';
 import Main from './components/Main';
 import Leaderboard from './components/Leaderboard';

@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import { formatTimeMin } from '../utilities/formatTime';
-import writeScore from '../utilities/writeScore';
+import writeScore from '../utilities/writeScoreInDb';
 
 function ModalGameOver({
   isModalOpen,
