@@ -27,7 +27,7 @@ function Table({ children }) {
                   </th>
                 </tr>
               </thead>
-              <tbody clas>{children}</tbody>
+              <tbody>{children}</tbody>
             </table>
           </div>
         </div>
