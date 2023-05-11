@@ -25,6 +25,7 @@ function App() {
     setStopwatchRunning(true);
     setTime(0);
     fetchCharData(setCharacters);
+    setShowLeaderboard(false);
   };
 
   return (
@@ -35,6 +36,7 @@ function App() {
         stopwatchRunning={stopwatchRunning}
         time={time}
         setTime={setTime}
+        restart={restart}
       />
       {!showLeaderBoard ? (
         <Main

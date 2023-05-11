@@ -1,10 +1,20 @@
 import extractNameFromUrl from '../utilities/extractNameFormUrl';
 import Stopwatch from './Stopwatch';
 
-function Header({ characters, avatarUrls, stopwatchRunning, time, setTime }) {
+function Header({
+  characters,
+  avatarUrls,
+  stopwatchRunning,
+  time,
+  setTime,
+  restart,
+}) {
   return (
     <header className="sticky top-0 z-30 flex items-center justify-around bg-gray-700 py-3 text-white">
-      <div className="text-2xl font-bold leading-tight">
+      <div
+        className="cursor-pointer text-2xl font-bold leading-tight"
+        onClick={restart}
+      >
         <div className="text-orange-500">
           WHERE'S <span className="text-yellow-300">WALDO</span>
         </div>
