@@ -4,6 +4,7 @@ import Stopwatch from './Stopwatch';
 function Header({
   characters,
   avatarUrls,
+  bgImgLoaded,
   stopwatchRunning,
   time,
   setTime,
@@ -22,11 +23,13 @@ function Header({
           & <span className="text-yellow-300">CIE</span>
         </div>
       </div>
-      <Stopwatch
-        stopwatchRunning={stopwatchRunning}
-        time={time}
-        setTime={setTime}
-      />
+      {bgImgLoaded && (
+        <Stopwatch
+          stopwatchRunning={stopwatchRunning}
+          time={time}
+          setTime={setTime}
+        />
+      )}
       <div className="flex items-center">
         {avatarUrls.map((url, index) => (
           <div

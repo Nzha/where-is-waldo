@@ -9,10 +9,11 @@ function Main({
   characters,
   setCharacters,
   avatarUrls,
+  setBgImgLoaded,
   setStopwatchRunning,
   time,
   restart,
-  setShowLeaderboard
+  setShowLeaderboard,
 }) {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
@@ -34,6 +35,7 @@ function Main({
     const bgImage = ref(storage, 'IntenseWaldo.jpg');
     getDownloadURL(bgImage).then((url) => {
       setBgImageUrl(url);
+      setBgImgLoaded(true);
     });
   }, []);
 

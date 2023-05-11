@@ -7,6 +7,7 @@ import Leaderboard from './components/Leaderboard';
 function App() {
   const [characters, setCharacters] = useState([]);
   const [avatarUrls, setAvatarUrls] = useState([]);
+  const [bgImgLoaded, setBgImgLoaded] = useState(false);
   const [stopwatchRunning, setStopwatchRunning] = useState(true);
   const [time, setTime] = useState(0);
   const [showLeaderBoard, setShowLeaderboard] = useState(false);
@@ -33,6 +34,7 @@ function App() {
       <Header
         characters={characters}
         avatarUrls={avatarUrls}
+        bgImgLoaded={bgImgLoaded}
         stopwatchRunning={stopwatchRunning}
         time={time}
         setTime={setTime}
@@ -43,6 +45,7 @@ function App() {
           characters={characters}
           setCharacters={setCharacters}
           avatarUrls={avatarUrls}
+          setBgImgLoaded={setBgImgLoaded}
           setStopwatchRunning={setStopwatchRunning}
           time={time}
           restart={restart}
