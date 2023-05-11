@@ -24,6 +24,12 @@ function ModalGameOver({
     setShowLeaderboard(true);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSubmit();
+    }
+  };
+
   return (
     <>
       <Transition appear show={isModalOpen} as={Fragment}>
@@ -85,6 +91,7 @@ function ModalGameOver({
                       placeholder="Username"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
+                      onKeyDown={handleKeyDown}
                       required
                     />
                   </div>
@@ -97,7 +104,7 @@ function ModalGameOver({
                       Cancel
                     </button>
                     <button
-                      type="button"
+                      type="submit"
                       className="inline-flex justify-center rounded-md border border-transparent bg-orange-700 px-4 py-2 text-sm font-medium text-white hover:bg-red-600"
                       onClick={handleSubmit}
                     >
