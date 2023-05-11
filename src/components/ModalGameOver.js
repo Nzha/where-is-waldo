@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
-import formatTime, { formatTimeMin } from '../utilities/formatTime';
+import { formatTimeMin } from '../utilities/formatTime';
 import writeScore from '../utilities/writeScoreInDb';
 
 function ModalGameOver({
@@ -20,7 +20,7 @@ function ModalGameOver({
 
   const handleSubmit = async () => {
     closeModal();
-    await writeScore(username, formatTime(time));
+    await writeScore(username, time);
     setShowLeaderboard(true);
   };
 

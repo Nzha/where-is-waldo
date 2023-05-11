@@ -54,7 +54,11 @@ const fetchScores = (setScores) => {
           name: value.name,
           score: value.score,
         }));
-        setScores(scoreList);
+        // Get the top 30 scores
+        const sortedScoreList = scoreList
+          .sort((a, b) => a.score - b.score)
+          .slice(0, 30);
+        setScores(sortedScoreList);
       } else {
         console.log('No data available');
       }
