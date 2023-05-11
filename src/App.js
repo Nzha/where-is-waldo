@@ -28,7 +28,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="h-screen bg-gray-100">
       <Header
         characters={characters}
         avatarUrls={avatarUrls}
