@@ -37,7 +37,7 @@ function Main({
       setBgImageUrl(url);
       setBgImgLoaded(true);
     });
-  }, []);
+  }, [setBgImgLoaded]);
 
   const handleClick = (e) => {
     e.preventDefault();
