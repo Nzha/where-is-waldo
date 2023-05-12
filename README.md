@@ -2,6 +2,8 @@
 
 This is a **"Where's Waldo"** type app created using **React** and **Tailwind** with a **Firebase** backend. The app challenges users to find a hidden character or object within a detailed image. Users can interact with the image by zooming in or out, panning the image, and marking found objects.
 
+Image from [PXLCON] (https://pxlcon.jimmysomething.com/)
+
 ## Technologies Used
 
 - **React**: A popular front-end library for building user interfaces
