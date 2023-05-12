@@ -26,7 +26,7 @@ To install and run this app locally, follow these steps:
 
 ## Credits
 
-This app was created by Aedan as part of a React and Firebase project.
+This app was created by Nzha as part of a React and Firebase project.
 
 ## License
 
