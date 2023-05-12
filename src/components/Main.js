@@ -35,9 +35,8 @@ function Main({
     const bgImage = ref(storage, 'IntenseWaldo.jpg');
     getDownloadURL(bgImage).then((url) => {
       setBgImageUrl(url);
-      setBgImgLoaded(true);
     });
-  }, [setBgImgLoaded]);
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -87,6 +86,7 @@ function Main({
         src={bgImageUrl}
         alt="gameImage"
         onClick={handleClick}
+        onLoad={() => setBgImgLoaded(true)}
         ref={imageRef}
       />
       {showAlert && <Alert message={alertMessage} type={alertType} />}
